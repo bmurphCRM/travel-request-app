@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Cost__c</fullName>
+    <description>The actual post-trip cost for this expense line item. Rolled up to calculate the Total Actual Cost on the parent Travel Request for variance analysis.</description>
+    <inlineHelpText>Enter the actual amount spent for this expense after the trip is completed.</inlineHelpText>
+    <label>Actual Cost</label>
+    <precision>18</precision>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

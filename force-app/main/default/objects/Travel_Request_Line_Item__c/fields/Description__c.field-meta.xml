@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description__c</fullName>
+    <description>Detailed description of this specific expense line item.</description>
+    <inlineHelpText>Describe this expense in detail (e.g., "Round-trip flight SFO to JFK on United Airlines").</inlineHelpText>
+    <label>Description</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

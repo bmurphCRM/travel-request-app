@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The department associated with this travel request. Used for cost allocation and departmental reporting.</description>
+    <inlineHelpText>Select the department that will be charged for this trip.</inlineHelpText>
+    <label>Department</label>
+    <referenceTo>Department__c</referenceTo>
+    <relationshipLabel>Travel Requests</relationshipLabel>
+    <relationshipName>Travel_Requests</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

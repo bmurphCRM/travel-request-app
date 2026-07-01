@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>Travel_Request__c</defaultLandingTab>
+    <description>Application for submitting and managing employee travel requests</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Travel Request App</label>
+    <navType>Standard</navType>
+    <tabs>Travel_Request__c</tabs>
+    <tabs>Department__c</tabs>
+    <tabs>standard-Report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <uiType>Lightning</uiType>
+    <brand>
+        <headerColor>#0070D2</headerColor>
+    </brand>
+</CustomApplication>

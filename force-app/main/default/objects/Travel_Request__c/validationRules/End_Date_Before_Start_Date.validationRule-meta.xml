@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_Date_Before_Start_Date</fullName>
+    <active>true</active>
+    <description>Prevents saving a Travel Request where the Trip End Date is earlier than the Trip Start Date.</description>
+    <errorConditionFormula><![CDATA[
+        AND(
+            NOT(ISBLANK(Trip_Start_Date__c)),
+            NOT(ISBLANK(Trip_End_Date__c)),
+            Trip_End_Date__c < Trip_Start_Date__c
+        )
+    ]]></errorConditionFormula>
+    <errorDisplayField>Trip_End_Date__c</errorDisplayField>
+    <errorMessage>Trip End Date cannot be before Trip Start Date.</errorMessage>
+</ValidationRule>

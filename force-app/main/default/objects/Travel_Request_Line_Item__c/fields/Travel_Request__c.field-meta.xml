@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Travel_Request__c</fullName>
+    <description>Master-Detail relationship linking this expense line item to its parent Travel Request.</description>
+    <inlineHelpText>The Travel Request this expense line item belongs to.</inlineHelpText>
+    <label>Travel Request</label>
+    <referenceTo>Travel_Request__c</referenceTo>
+    <relationshipLabel>Travel Request Line Items</relationshipLabel>
+    <relationshipName>Travel_Request_Line_Items</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

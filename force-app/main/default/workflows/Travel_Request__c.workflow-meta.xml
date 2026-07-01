@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Status_Pending_Approval</fullName>
+        <description>Sets the Travel Request status to Pending Approval when submitted for approval.</description>
+        <field>Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Set Status to Pending Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_Approved</fullName>
+        <description>Sets the Travel Request status to Approved when all approval steps are completed.</description>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Set Status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_Rejected</fullName>
+        <description>Sets the Travel Request status to Rejected when the approval request is rejected.</description>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Set Status to Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

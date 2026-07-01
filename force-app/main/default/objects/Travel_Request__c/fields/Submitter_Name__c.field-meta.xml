@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submitter_Name__c</fullName>
+    <description>Auto-populated formula field that displays the full name of the user who created this travel request.</description>
+    <inlineHelpText>Automatically populated with the name of the employee who submitted this request. Read-only.</inlineHelpText>
+    <formula><![CDATA[CreatedBy.FirstName & " " & CreatedBy.LastName]]></formula>
+    <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
+    <label>Submitter Name</label>
+    <type>Text</type>
+</CustomField>

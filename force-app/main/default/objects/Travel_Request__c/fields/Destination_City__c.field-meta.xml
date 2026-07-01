@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Destination_City__c</fullName>
+    <description>The primary city or location being traveled to for this trip.</description>
+    <inlineHelpText>Enter the city and state/country of your primary travel destination (e.g., Chicago, IL or London, UK).</inlineHelpText>
+    <label>Destination City</label>
+    <length>100</length>
+    <type>Text</type>
+</CustomField>
