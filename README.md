@@ -1,6 +1,6 @@
 # ✈️ Travel Request App
 
-**Salesforce Application Design Plan** | Version 1.1 (As-Built) | Generated: July 2026 by Brian Murphy, Distinguished Solution Engineer, Salesforce using Agentforce Vibes <hr>(From Prompt to App in 2 Hours)<br><br><br>Original Prompt: "I am building a Travel Request application for my company that will run on Salesforce.  Basically employees will create travel requests, enter the details for their trip such as flight cost, hotel costs, food costs and rental car costs.  The user will submit the request for approval and if it's over 5,000.00 it requires a second approval.  Can you interview me and ask me questions for how to approach configuring this new Salesforce app."
+**Salesforce Application Design Plan** | Version 1.1 (As-Built) | Generated: July 2026 by Brian Murphy, Distinguished Solution Engineer, Salesforce using Agentforce Vibes <hr>**From Prompt to App in 2 Hours**<br><br>Original Prompt: "I am building a Travel Request application for my company that will run on Salesforce.  Basically employees will create travel requests, enter the details for their trip such as flight cost, hotel costs, food costs and rental car costs.  The user will submit the request for approval and if it's over 5,000.00 it requires a second approval.  Can you interview me and ask me questions for how to approach configuring this new Salesforce app."
 
 ---
 
