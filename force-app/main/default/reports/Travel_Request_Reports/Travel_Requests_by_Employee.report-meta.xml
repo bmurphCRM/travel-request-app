@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Travel_Request__c.Destination_City__c</field>
+    </columns>
+    <columns>
+        <field>Travel_Request__c.Status__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Travel_Request__c.Total_Estimated_Cost__c</field>
+    </columns>
+    <description>Summarizes travel requests grouped by employee, showing count and total estimated cost per person.</description>
+    <folderName>Travel_Request_Reports</folderName>
+    <format>Summary</format>
+    <groupingsDown>
+        <field>Travel_Request__c.Submitter_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Travel Requests by Employee</name>
+    <reportType>CustomEntity$Travel_Request__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>

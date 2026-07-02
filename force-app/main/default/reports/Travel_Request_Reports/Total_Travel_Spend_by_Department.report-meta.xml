@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Travel_Request__c.Submitter_Name__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Travel_Request__c.Total_Estimated_Cost__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Travel_Request__c.Total_Actual_Cost__c</field>
+    </columns>
+    <description>Summarizes total estimated and actual travel spend grouped by department.</description>
+    <folderName>Travel_Request_Reports</folderName>
+    <format>Summary</format>
+    <groupingsDown>
+        <field>Travel_Request__c.Department__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Total Travel Spend by Department</name>
+    <reportType>CustomEntity$Travel_Request__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Travel_Request__c.Total_Estimated_Cost__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Travel_Request__c.Total_Actual_Cost__c</field>
+    </columns>
+    <description>Shows total estimated and actual travel costs grouped by month of trip start date to identify spending trends over time.</description>
+    <folderName>Travel_Request_Reports</folderName>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>Travel_Request__c.Trip_Start_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Travel Cost Trends Over Time</name>
+    <reportType>CustomEntity$Travel_Request__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>

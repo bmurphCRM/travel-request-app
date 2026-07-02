@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Travel_Request__c.Destination_City__c</field>
+    </columns>
+    <columns>
+        <field>Travel_Request__c.Trip_Start_Date__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Travel_Request__c.Total_Estimated_Cost__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Travel_Request__c.Total_Actual_Cost__c</field>
+    </columns>
+    <description>Compares estimated versus actual travel costs grouped by individual trip.</description>
+    <folderName>Travel_Request_Reports</folderName>
+    <format>Summary</format>
+    <groupingsDown>
+        <field>CUST_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Estimated vs Actual Cost by Trip</name>
+    <reportType>CustomEntity$Travel_Request__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>

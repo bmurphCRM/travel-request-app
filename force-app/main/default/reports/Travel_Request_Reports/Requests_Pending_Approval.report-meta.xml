@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Travel_Request__c.Submitter_Name__c</field>
+    </columns>
+    <columns>
+        <field>Travel_Request__c.Destination_City__c</field>
+    </columns>
+    <columns>
+        <field>Travel_Request__c.Total_Estimated_Cost__c</field>
+    </columns>
+    <description>Lists all travel requests currently awaiting approval.</description>
+    <filter>
+        <criteriaItems>
+            <column>Travel_Request__c.Status__c</column>
+            <operator>equals</operator>
+            <value>Pending Approval</value>
+        </criteriaItems>
+    </filter>
+    <folderName>Travel_Request_Reports</folderName>
+    <format>Tabular</format>
+    <name>Requests Pending Approval</name>
+    <reportType>CustomEntity$Travel_Request__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+</Report>
