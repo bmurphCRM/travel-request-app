@@ -3,7 +3,9 @@
 **Salesforce Application Design Plan** | Version 1.2 (As-Built) | Generated: July 2026 by Brian Murphy, Distinguished Solution Engineer, Salesforce using Agentforce Vibes <hr>**From Prompt to App in 2 Hours**<br><br>Original Prompt: "I am building a Travel Request application for my company that will run on Salesforce.  Basically employees will create travel requests, enter the details for their trip such as flight cost, hotel costs, food costs and rental car costs.  The user will submit the request for approval and if it's over 5,000.00 it requires a second approval.  Can you interview me and ask me questions for how to approach configuring this new Salesforce app."
 
 <img width="1907" height="777" alt="image" src="https://github.com/user-attachments/assets/b535c9dc-7458-4c8b-8a0e-5d191fd39818" /><br> <br>
-<img width="1917" height="833" alt="image" src="https://github.com/user-attachments/assets/7897bf64-b7be-4c67-87fe-c6b9382df361" />
+<img width="1917" height="833" alt="image" src="https://github.com/user-attachments/assets/7897bf64-b7be-4c67-87fe-c6b9382df361" /><br><br>
+<img width="1914" height="916" alt="image" src="https://github.com/user-attachments/assets/71d2fcc6-6192-496a-a102-d2256c9b40cc" />
+
 
 
 
