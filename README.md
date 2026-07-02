@@ -1,6 +1,6 @@
 # ✈️ Travel Request App
 
-**Salesforce Application Design Plan** | Version 1.1 (As-Built) | Generated: July 2026 by Brian Murphy, Distinguished Solution Engineer, Salesforce using Agentforce Vibes <hr>**From Prompt to App in 2 Hours**<br><br>Original Prompt: "I am building a Travel Request application for my company that will run on Salesforce.  Basically employees will create travel requests, enter the details for their trip such as flight cost, hotel costs, food costs and rental car costs.  The user will submit the request for approval and if it's over 5,000.00 it requires a second approval.  Can you interview me and ask me questions for how to approach configuring this new Salesforce app."
+**Salesforce Application Design Plan** | Version 1.2 (As-Built) | Generated: July 2026 by Brian Murphy, Distinguished Solution Engineer, Salesforce using Agentforce Vibes <hr>**From Prompt to App in 2 Hours**<br><br>Original Prompt: "I am building a Travel Request application for my company that will run on Salesforce.  Basically employees will create travel requests, enter the details for their trip such as flight cost, hotel costs, food costs and rental car costs.  The user will submit the request for approval and if it's over 5,000.00 it requires a second approval.  Can you interview me and ask me questions for how to approach configuring this new Salesforce app."
 
 <img width="1907" height="777" alt="image" src="https://github.com/user-attachments/assets/b535c9dc-7458-4c8b-8a0e-5d191fd39818" /><br> <br>
 <img width="1917" height="833" alt="image" src="https://github.com/user-attachments/assets/7897bf64-b7be-4c67-87fe-c6b9382df361" />
@@ -36,8 +36,9 @@
 > - **Approval Process:** Currently **inactive**. Step 2 CFO approver is configured as adhoc — requires manual queue creation and activation before use (see Section 14).
 > - **Lightning Record Pages:** Deployed to org but not yet assigned as org defaults — requires manual activation per object (see Section 14).
 > - **Permission Sets:** All three permission sets deployed and assigned to `b.murphy@cursor.training`.
-> - **Sample Data:** 10 Departments and 10 Travel Requests (46 line items) loaded into the org.
+> - **Sample Data:** 10 Departments, 10 initial Travel Requests (46 line items), plus **500 additional Travel Requests (1,900 line items)** loaded into the org. Records span 18 months of dates with varying users, departments, destinations, statuses, and costs.
 > - **Reports:** All 5 reports deployed to the `Travel Request Reports` folder. Field references use `CustomEntity$Travel_Request__c` report type with dot-notation column names (`Travel_Request__c.FieldName`) and `CUST_NAME` for the Name field.
+> - **Submitter Name Formula:** `Submitter_Name__c` updated to use `Owner:User.FirstName & " " & Owner:User.LastName` (was `CreatedBy`) — enables bulk-loaded records to show different submitter names by varying `OwnerId`.
 > - **Dashboard:** `Travel Request Overview` dashboard deployed to the `Travel Request Dashboards` folder with 5 components (Spend by Department, Requests by Employee, Pending Approvals metric, Estimated vs. Actual Cost, Cost Trends Over Time).
 
 ---
@@ -75,7 +76,7 @@ erDiagram
     TRAVEL_REQUEST__C {
         string Id
         string Name_AutoNumber
-        string Submitter_Name__c_Formula
+        string Submitter_Name__c_Formula_Owner
         id Department__c
         date Trip_Start_Date__c
         date Trip_End_Date__c
@@ -96,14 +97,14 @@ erDiagram
         currency Actual_Cost__c
     }
 
-    USER ||--o{ TRAVEL_REQUEST__C : "CreatedBy (Formula)"
+    USER ||--o{ TRAVEL_REQUEST__C : "Owner (Formula)"
     DEPARTMENT__C ||--o{ TRAVEL_REQUEST__C : "Lookup"
     TRAVEL_REQUEST__C ||--o{ TRAVEL_REQUEST_LINE_ITEM__C : "Master-Detail"
 ```
 
 > [!NOTE]
 > **Relationship Summary:**
-> - **User → Travel\_Request\_\_c:** System `CreatedBy` relationship. The `Submitter_Name__c` formula field reads `CreatedBy.FirstName & " " & CreatedBy.LastName` — read-only, no manual selection needed.
+> - **User → Travel\_Request\_\_c:** `OwnerId` relationship. The `Submitter_Name__c` formula field reads `Owner:User.FirstName & " " & Owner:User.LastName` — read-only, no manual selection needed.
 > - **Department\_\_c → Travel\_Request\_\_c:** Lookup relationship. Many requests can reference one department. Employee selects via lookup search.
 > - **Travel\_Request\_\_c → Travel\_Request\_Line\_Item\_\_c:** Master-Detail. Line items are owned by the parent request. Deleting a Travel Request cascades and deletes all child line items. Roll-Up Summary fields aggregate line item costs to the parent.
 
@@ -126,7 +127,7 @@ erDiagram
 | Field Label | API Name | Type | Notes |
 |-------------|----------|------|-------|
 | Travel Request Name | Name | Auto-Number | Format: `TR-{0000}` (e.g., TR-0001) |
-| Submitter Name | Submitter_Name__c | Formula (Text) | `CreatedBy.FirstName & " " & CreatedBy.LastName` — auto-populated, read-only |
+| Submitter Name | Submitter_Name__c | Formula (Text) | `Owner:User.FirstName & " " & Owner:User.LastName` — auto-populated from record owner, read-only |
 | Department | Department__c | Lookup → Department\_\_c | Employee selects their department |
 | Trip Start Date | Trip_Start_Date__c | Date | ⚠️ Required |
 | Trip End Date | Trip_End_Date__c | Date | ⚠️ Required — Validated: cannot be before Trip Start Date |
@@ -463,7 +464,30 @@ Script: `scripts/apex/create_sample_travel_requests.apex`
 | TR-0010 | Information Technology | Las Vegas, NV | Domestic | Draft | 4 (Airfare, Hotel, Conference Fees, Miscellaneous) |
 
 > [!NOTE]
-> **Total line items:** 46 records covering all 7 expense types. Each line item includes both `Estimated_Cost__c` and `Actual_Cost__c` to enable variance analysis via the Roll-Up Summary fields and reports.
+> **Total line items:** 46 records covering all 7 expense types.
+### Bulk Sample Data (500 Travel Requests, 1,900 Line Items)
+
+Script: `scripts/apex/create_500_travel_requests.apex`
+
+This script populates the org with realistic bulk data for meaningful reports and dashboard visuals.
+
+| Attribute | Details |
+|-----------|---------|
+| Travel Requests inserted | 500 |
+| Line Items inserted | 1,900 (avg 3.8 per request) |
+| Date range | 18 months: ~12 months past to ~6 months future from run date |
+| Trip type mix | ~70% Domestic, ~30% International |
+| Departments | All 10 departments, evenly distributed |
+| Destinations | 20 US cities + 15 international cities |
+| Submitters | Multiple active org users assigned via OwnerId; Submitter_Name__c formula reads Owner:User name |
+| Status distribution | ~65% Approved (past-dated), ~15% Submitted, ~12% Pending Approval, ~5% Draft, ~3% Rejected |
+| Actual costs | Populated only on Approved past-dated records with plus or minus 20-25% variance from estimated |
+| Expense types | Airfare, Hotel, Food, Ground Transportation, Conference Fees, Parking, Miscellaneous |
+
+> [!NOTE]
+> The `Submitter_Name__c` formula was updated from `CreatedBy` to `Owner:User` to support varying submitter names in bulk-loaded data. Setting `OwnerId` on each record at insert time drives the submitter name shown on records and reports.
+
+ Each line item includes both `Estimated_Cost__c` and `Actual_Cost__c` to enable variance analysis via the Roll-Up Summary fields and reports.
 
 ---
 
@@ -564,4 +588,4 @@ Use: `sf org assign permset --name <PermSetName> --on-behalf-of <username>`
 
 ---
 
-*Travel Request App — Salesforce Design Plan — Version 1.1 (As-Built) — July 2026*
+*Travel Request App — Salesforce Design Plan — Version 1.2 (As-Built) — July 2026*
