@@ -3,7 +3,7 @@
     <fullName>Submitter_Name__c</fullName>
     <description>Auto-populated formula field that displays the full name of the user who created this travel request.</description>
     <inlineHelpText>Automatically populated with the name of the employee who submitted this request. Read-only.</inlineHelpText>
-    <formula><![CDATA[CreatedBy.FirstName & " " & CreatedBy.LastName]]></formula>
+    <formula><![CDATA[Owner:User.FirstName & " " & Owner:User.LastName]]></formula>
     <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
     <label>Submitter Name</label>
     <type>Text</type>
