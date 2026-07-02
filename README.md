@@ -37,6 +37,8 @@
 > - **Lightning Record Pages:** Deployed to org but not yet assigned as org defaults — requires manual activation per object (see Section 14).
 > - **Permission Sets:** All three permission sets deployed and assigned to `b.murphy@cursor.training`.
 > - **Sample Data:** 10 Departments and 10 Travel Requests (46 line items) loaded into the org.
+> - **Reports:** All 5 reports deployed to the `Travel Request Reports` folder. Field references use `CustomEntity$Travel_Request__c` report type with dot-notation column names (`Travel_Request__c.FieldName`) and `CUST_NAME` for the Name field.
+> - **Dashboard:** `Travel Request Overview` dashboard deployed to the `Travel Request Dashboards` folder with 5 components (Spend by Department, Requests by Employee, Pending Approvals metric, Estimated vs. Actual Cost, Cost Trends Over Time).
 
 ---
 
@@ -327,7 +329,7 @@ Three Workflow Rules are deployed on `Travel_Request__c` to drive status field t
 | 12 | Lightning Record Pages (FlexiPages) | Travel\_Request\_Record\_Page, Travel\_Request\_Line\_Item\_Record\_Page, Department\_Record\_Page | Requires all objects and fields; deployed via `sf project deploy start` |
 
 > [!NOTE]
-> Steps 1–12 were completed and deployed to `b.murphy@cursor.training` in July 2026. Reports & Dashboards and the OWD/Role Hierarchy configuration remain as manual post-deployment tasks — see Section 14.
+> Steps 1–12 were completed and deployed to `b.murphy@cursor.training` in July 2026. Step 11 (Reports & Dashboards) was deployed via metadata — see implementation notes in the As-Built Status section above. The OWD/Role Hierarchy/Approval Process configuration remain as manual post-deployment tasks — see Section 14.
 
 ---
 
@@ -534,14 +536,17 @@ The following tasks require manual configuration in Salesforce Setup after metad
 
 Use: `sf org assign permset --name <PermSetName> --on-behalf-of <username>`
 
-### 6️⃣ Build Reports & Dashboard
+### 6️⃣ ✅ Reports & Dashboard — Deployed via Metadata
 
-| Step | Action |
-|------|--------|
-| 1 | Go to the **Reports** tab → create a new folder: `Travel Request Reports` |
-| 2 | Build each of the 5 reports defined in Section 10, saving to the `Travel Request Reports` folder |
-| 3 | Go to the **Dashboards** tab → create a new folder: `Travel Request Dashboards` |
-| 4 | Build the **Travel Request Overview** dashboard using the 5 reports as sources (see Section 10) |
+> [!NOTE]
+> Reports and the dashboard have been deployed via `sf project deploy start`. No manual build required.
+
+| Item | Status | Details |
+|------|--------|---------|
+| Travel Request Reports folder | ✅ Deployed | `force-app/main/default/reports/Travel_Request_Reports-meta.xml` |
+| 5 Reports | ✅ Deployed | `force-app/main/default/reports/Travel_Request_Reports/` |
+| Travel Request Dashboards folder | ✅ Deployed | `force-app/main/default/dashboards/Travel_Request_Dashboards-meta.xml` |
+| Travel Request Overview dashboard | ✅ Deployed | `force-app/main/default/dashboards/Travel_Request_Dashboards/Travel_Request_Overview.dashboard-meta.xml` |
 
 ### Checklist Summary
 
@@ -554,8 +559,8 @@ Use: `sf org assign permset --name <PermSetName> --on-behalf-of <username>`
 | ☐ | Activate the Travel_Request_Approval approval process | 🔴 Critical — before approval use |
 | ☐ | Assign Lightning Record Pages as org defaults (all 3 objects) | 🟡 High |
 | ☐ | Assign permission sets to all org users | 🟡 High |
-| ☐ | Build 5 reports in Travel Request Reports folder | 🟢 Medium |
-| ☐ | Build Travel Request Overview dashboard | 🟢 Medium |
+| ✅ | Deploy 5 reports to Travel Request Reports folder | ~~🟢 Medium~~ — **Done** |
+| ✅ | Deploy Travel Request Overview dashboard | ~~🟢 Medium~~ — **Done** |
 
 ---
 
